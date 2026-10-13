@@ -160,14 +160,3 @@ These are currently edited inside `meshfree_ADI3D_paper.m`:
 | `resizeTo` | `[]` | Keep original dimensions unless a target size is supplied |
 
 These are implementation defaults, not clinically or statistically validated optimal settings.
-
-## Evaluation caveats
-
-- **Keep valid failures in the results.** The batch summary currently uses `Dice > 0`, excluding valid zero-overlap predictions. Include zero Dice scores in evaluation and report attempted, completed, and failed-case counts separately.
-- **Validate HD95.** The helper's morphology/distance-transform construction is not a validated implementation of bidirectional surface HD95, and voxel spacing is not used. Do not report its output as millimetres or compare it with standard HD95 benchmarks without correction and reference tests.
-- **Document the cohort.** Existing CSV/plot artifacts do not establish dataset version, preprocessing, subject split, or baseline comparisons. No aggregate performance claim is made in this README.
-- **Check preprocessing and pairing.** The code assumes prepared images and matched labels. Duplicate compressed-file discovery or incorrect filename ordering can invalidate a batch.
-- **Record reproducibility settings.** Save MATLAB/toolbox versions, parameters, subject identifiers, clustering RNG state, and CPU/GPU choice. CPU and GPU paths use different numerical precision.
-- **Understand postprocessing.** Retaining only the largest component may discard additional disconnected tumour regions.
-
-Useful next steps are a validated input manifest, corrected metric helpers, unbiased summaries, parameter/config logging, saved prediction masks, and comparisons with reproducible classical and neural baselines.
